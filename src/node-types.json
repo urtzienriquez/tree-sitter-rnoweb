@@ -10,31 +10,34 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "renv_content",
           "named": true
         },
         {
-          "type": "renv_key_pair",
-          "named": true
-        },
-        {
-          "type": "renv_sig_beg",
-          "named": true
-        },
-        {
-          "type": "renv_sig_end",
+          "type": "renv_sig_options",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "renv_key",
+    "type": "renv_engine",
     "named": true,
-    "fields": {}
+    "fields": {
+      "engine": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "renv_engine_key",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "renv_key_pair",
@@ -61,6 +64,53 @@
         ]
       }
     }
+  },
+  {
+    "type": "renv_sig_options",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "renv_label",
+            "named": true
+          }
+        ]
+      },
+      "options": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "engine",
+            "named": false
+          },
+          {
+            "type": "renv_engine",
+            "named": true
+          },
+          {
+            "type": "renv_key_pair",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "renv_val",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "rinline",
@@ -91,6 +141,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -112,7 +163,19 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "=",
     "named": false
   },
   {
@@ -124,19 +187,23 @@
     "named": true
   },
   {
+    "type": "engine",
+    "named": false
+  },
+  {
     "type": "renv_content",
     "named": true
   },
   {
-    "type": "renv_sig_beg",
+    "type": "renv_engine_key",
     "named": true
   },
   {
-    "type": "renv_sig_end",
+    "type": "renv_key",
     "named": true
   },
   {
-    "type": "renv_val",
+    "type": "renv_label",
     "named": true
   },
   {

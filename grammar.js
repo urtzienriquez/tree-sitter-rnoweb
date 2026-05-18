@@ -43,7 +43,7 @@ module.exports = grammar({
                 field("options", $._renv_options),
                 seq(
                     field("label", alias($.renv_key, $.renv_label)),
-                    optional(seq(",", field("options", $._renv_options)))
+                    optional(seq(/[, ]+/, field("options", $._renv_options)))
                 ),
             ),
 
@@ -85,10 +85,13 @@ module.exports = grammar({
             /[a-zA-Z]+[a-zA-Z0-9]*/,
 
         renv_key: $ =>
-            /[a-zA-Z_]+[a-zA-Z0-9_.]*/,
+            /[a-zA-Z_]+[a-zA-Z0-9_.\-]*/,
 
-        renv_val: $ =>
-            /[^,>]+/,
+        renv_val: $ => choice(
+                  /"[^"]*"/,
+                  /'[^']*'/,
+                  /[^,>\s]+/
+                ),
 
         latex: $ =>
             prec.right(repeat1(
