@@ -34,7 +34,7 @@ LATEXINDENT_OPTS = [
 
 def format_r_code(code, rscript_cmd):
     result = subprocess.run(
-        [rscript_cmd, "--vanilla", "-e", R_SCRIPT],
+        [rscript_cmd, "--slave", "--no-restore", "-e", R_SCRIPT],
         input=code,
         capture_output=True,
         text=True,
