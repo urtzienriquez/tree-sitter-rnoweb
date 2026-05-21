@@ -1,21 +1,45 @@
 {
   "name": "tree-sitter-rnoweb",
   "version": "0.1.0",
-  "description": "tree-sitter parser for rnoweb documents",
+  "description": "Tree-sitter parser for rnoweb (R NoWeb) literate programming documents",
   "main": "bindings/node",
   "scripts": {
-    "test": "tree-sitter test"
+    "test": "tree-sitter test",
+    "build": "tree-sitter build --wasm",
+    "install": "node-gyp rebuild"
   },
   "keywords": [
     "rnoweb",
-    "r"
+    "r",
+    "tree-sitter",
+    "parser",
+    "incremental"
   ],
-  "author": "Brian Albert Monroe",
+  "author": "Urtzi",
   "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/urtzienriquez/tree-sitter-rnoweb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/urtzienriquez/tree-sitter-rnoweb/issues"
+  },
+  "homepage": "https://github.com/urtzienriquez/tree-sitter-rnoweb",
   "dependencies": {
-    "nan": "^2.15.0"
+    "nan": "^2.27.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.24.3"
-  }
+    "tree-sitter-cli": "^0.26.9"
+  },
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "bindings/node/*",
+    "Cargo.toml",
+    "bindings/rust/*",
+    "queries/*",
+    "src/*",
+    "tree-sitter.json",
+    "tree-sitter-rnoweb.wasm"
+  ]
 }

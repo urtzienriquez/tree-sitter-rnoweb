@@ -2,14 +2,17 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*"
+    tags: ["*"]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   release:
     uses: tree-sitter/workflows/.github/workflows/release.yml@main
-    with:
-      node-version: 22

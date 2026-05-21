@@ -1,43 +1,20 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
   "grammars": [
     {
       "name": "rnoweb",
-      "camelcase": "yes",
-      "title": "Rnoweb",
+      "camelcase": "Rnoweb",
       "scope": "source.rnoweb",
-      "file-types": [
-        "rnoweb",
-        "Rnw"
-      ],
-      "injection-regex": "^rnoweb$",
-      "class-name": "TreeSitterRnoweb"
+      "path": ".",
+      "file-types": ["Rnw", "rnoweb"],
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm"
     }
   ],
   "metadata": {
     "version": "0.1.0",
-    "license": "MIT",
-    "description": "parser for R noweb ",
-    "authors": [
-      {
-        "name": "Urtzi Enriquez",
-        "email": "uenriquez@proton.me",
-        "url": ""
-      }
-    ],
-    "links": {
-      "repository": "https://github.com/urtzienriquez/tree-sitter-rnoweb",
-      "funding": ""
-    }
-  },
-  "bindings": {
-    "c": true,
-    "go": false,
-    "java": false,
-    "node": true,
-    "python": false,
-    "rust": true,
-    "swift": false,
-    "zig": false
+    "description": "tree-sitter parser for rnoweb (R NoWeb) literate programming documents",
+    "authors": [{"name": "Urtzi"}],
+    "license": "GPL-3.0-or-later",
+    "repository": "https://github.com/urtzienriquez/tree-sitter-rnoweb"
   }
 }

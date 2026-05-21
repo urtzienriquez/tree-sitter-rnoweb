@@ -1,12 +1,13 @@
 [package]
 name = "tree-sitter-rnoweb"
-description = "rnoweb grammar for the tree-sitter parsing library"
+description = "tree-sitter parser for rnoweb (R NoWeb) literate programming documents"
 version = "0.1.0"
-keywords = ["incremental", "parsing", "rnoweb"]
+keywords = ["incremental", "parsing", "rnoweb", "r", "noweb"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/urtzienriquez/tree-sitter-rnoweb"
 edition = "2021"
-license = "MIT"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/urtzienriquez/tree-sitter-rnoweb"
+homepage = "https://github.com/urtzienriquez/tree-sitter-rnoweb"
 
 build = "bindings/rust/build.rs"
 include = [
@@ -14,13 +15,14 @@ include = [
   "grammar.js",
   "queries/*",
   "src/*",
+  "tree-sitter.json",
 ]
 
 [lib]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "~0.24"
+tree-sitter = "~0.26"
 
 [build-dependencies]
 cc = "1.0"

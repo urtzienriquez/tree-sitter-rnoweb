@@ -1,9 +1,13 @@
-# The Rnweb example file makes lots of other files if you try and compile it, ignore all of these
+# Ignore generated files from compiling examples, but keep source files
 example/*
 !example/*.Rnw
 !example/packages.tex
+!example/*.bib
 src/.ccls-cache/
 .ccls-cache/
+rnoweb.so
+tree-sitter-rnoweb.wasm
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/c,c++,node,visualstudiocode,rust
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,node,visualstudiocode,rust
@@ -248,6 +252,4 @@ Cargo.lock
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,node,visualstudiocode,rust
 
 build/
-
-# Python formatter cache
 __pycache__/
