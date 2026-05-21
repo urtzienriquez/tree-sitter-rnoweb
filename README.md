@@ -56,17 +56,23 @@ Download `tree-sitter-rnoweb.wasm` or `tree-sitter-rnoweb.tar.gz` from the [late
 
 ### literateR-fmt
 
-This repo ships a formatter at `formatters/literateR-fmt` that formats LaTeX while preserving R code chunks and inline expressions intact. It handles:
+This repo ships a formatter at `formatters/literateR-fmt` that formats both LaTeX and embedded R code. It handles:
 
 - Rnoweb chunks (`<<...>>=` ... `@`)
 - R Markdown chunks (`` ```{r} `` ... `` ``` ``)
 - YAML front matter
 
-**Requirements:** `latexindent` must be installed and on your `PATH`.
+**Requirements:**
+
+- `latexindent` — formats LaTeX
+- `styler` R package — formats R code (`install.packages("styler")`)
 
 ```bash
-# Install via your system package manager, or:
+# Install latexindent via your system package manager, or:
 # tlmgr install latexindent
+
+# Install styler from within R:
+# install.packages("styler")
 ```
 
 **Usage:**
@@ -76,7 +82,7 @@ literateR-fmt file.Rnw          # format in-place
 literateR-fmt < input.Rnw > output.Rnw   # stdin/stdout
 ```
 
-Set `LITERATE_R_LATEXINDENT` to override the latexindent path.
+Set `LITERATE_R_LATEXINDENT` to override the latexindent path. Set `LITERATE_R_RSCRIPT` to override the Rscript path.
 
 ### Neovim (conform.nvim)
 
