@@ -1,9 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <tree_sitter/parser.h>
 
-#define ESN 4
 #define SEXPR 6
 
 enum TokenType {
@@ -16,7 +12,7 @@ enum TokenType {
 
 bool ws(int32_t val)
 {
-	return(val == ' ' || val == '\t' || val == '\n');
+	return(val == ' ' || val == '\t' || val == '\n' || val == '\r');
 }
 
 void advance_ws(TSLexer* lexer)
@@ -49,20 +45,17 @@ bool rnw_content(TSLexer* lexer)
 
 bool rnw_sig_end(TSLexer* lexer)
 {
-	// End of file, return false
 	if (lexer->eof(lexer)) return(false);
 
-	// We're at column 0, now is this character '<'
-	char tocheck[ESN] = {'>', '>', '=', '\n'};
+	char sig_end[] = {'>', '>', '='};
 
 	bool res = true;
 	int32_t val = lexer->lookahead;
 
-	for (int i = 0; i < ESN; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		// The current character
 		val = lexer->lookahead;
-		if (val != tocheck[i])
+		if (val != sig_end[i])
 		{
 			res = false;
 			break;
@@ -74,6 +67,10 @@ bool rnw_sig_end(TSLexer* lexer)
 
 	if (res)
 	{
+		if (lexer->lookahead == '\r')
+			lexer->advance(lexer, false);
+		if (lexer->lookahead == '\n')
+			lexer->advance(lexer, false);
 		lexer->result_symbol = RENV_SIG_END;
 		lexer->mark_end(lexer);
 	}
@@ -94,7 +91,6 @@ bool word_or_sig(TSLexer* lexer)
 	int32_t col = lexer->get_column(lexer);
 	// The current character
 	int32_t val  = lexer->lookahead;
-	int32_t fval = lexer->lookahead;
 
 	// If we're in col0 we could be in a sig
 	if ((col == 0) && (val != '\\')) {
@@ -166,12 +162,15 @@ bool word_or_sig(TSLexer* lexer)
 		lexer->result_symbol = _LATEX_WORD;
 		return(true);
 	}
+	return(false);
 
 }
 
-void tree_sitter_rnoweb_external_scanner_create()
-{};
-void* tree_sitter_rnoweb_external_scanner_destroy(void *payload)
+void* tree_sitter_rnoweb_external_scanner_create()
+{
+	return NULL;
+};
+void tree_sitter_rnoweb_external_scanner_destroy(void *payload)
 {};
 unsigned tree_sitter_rnoweb_external_scanner_serialize(
   void *payload,
@@ -195,8 +194,7 @@ bool tree_sitter_rnoweb_external_scanner_scan(
 	// Move past whitespace
 	advance_ws(lexer);
 
-	bool res;
-
+	bool res = false;
 
 	if (valid_symbols[_LATEX_WORD] || valid_symbols[RENV_INLINE] || valid_symbols[RENV_SIG_BEG])
 	{

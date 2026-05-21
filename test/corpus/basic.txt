@@ -37,6 +37,8 @@ We all know 2 > 1
 (source_file
 	(latex)
 	(rchunk
+		(renv_sig_beg)
+		(renv_sig_end)
 		(renv_content)
 	)
 )
@@ -57,12 +59,14 @@ We all know 2 > 1
 (source_file
 	(latex)
 	(rchunk
-        (renv_sig_options
-		    (renv_key_pair
-			    (renv_key)
-			    (renv_val)
-		    )
+		(renv_sig_beg)
+		(renv_sig_options
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
 		)
+		(renv_sig_end)
 		(renv_content)
 	)
 )
@@ -83,9 +87,11 @@ We all know 2 > 1
 (source_file
 	(latex)
 	(rchunk
+		(renv_sig_beg)
 		(renv_sig_options
-            (renv_label)
+			(renv_label)
 		)
+		(renv_sig_end)
 		(renv_content)
 	)
 )
@@ -106,13 +112,15 @@ We all know 2 > 1
 (source_file
 	(latex)
 	(rchunk
+		(renv_sig_beg)
 		(renv_sig_options
-            (renv_label)
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-        )
+			(renv_label)
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+		)
+		(renv_sig_end)
 		(renv_content)
 	)
 )
@@ -133,16 +141,18 @@ We all know 2 > 1
 (source_file
 	(latex)
 	(rchunk
+		(renv_sig_beg)
 		(renv_sig_options
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
 		)
+		(renv_sig_end)
 		(renv_content)
 	)
 )
@@ -166,20 +176,22 @@ Back again!
 (source_file
 	(latex)
 	(rchunk
-        (renv_sig_options
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-        )
+		(renv_sig_beg)
+		(renv_sig_options
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+		)
+		(renv_sig_end)
 		(renv_content)
 	)
 	(latex)

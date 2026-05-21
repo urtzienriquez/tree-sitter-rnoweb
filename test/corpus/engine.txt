@@ -17,10 +17,12 @@ Back again!
 (source_file
 	(latex)
 	(rchunk
-        (renv_sig_options
-            (renv_engine
-                (renv_engine_key))
-        )
+		(renv_sig_beg)
+		(renv_sig_options
+			(renv_engine
+				(renv_engine_key))
+		)
+		(renv_sig_end)
 		(renv_content)
 	)
 	(latex)
@@ -45,17 +47,19 @@ Back again!
 (source_file
 	(latex)
 	(rchunk
-        (renv_sig_options
-            (renv_key_pair
-                (renv_key)
-                (renv_val))
-            (renv_engine
-                (renv_engine_key))
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-        )
+		(renv_sig_beg)
+		(renv_sig_options
+			(renv_key_pair
+				(renv_key)
+				(renv_val))
+			(renv_engine
+				(renv_engine_key))
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+		)
+		(renv_sig_end)
 		(renv_content)
 	)
 	(latex)
@@ -80,15 +84,17 @@ Back again!
 (source_file
 	(latex)
 	(rchunk
-        (renv_sig_options
-            (renv_label)
-            (renv_engine
-                (renv_engine_key))
-            (renv_key_pair
-                (renv_key)
-                (renv_val)
-            )
-        )
+		(renv_sig_beg)
+		(renv_sig_options
+			(renv_label)
+			(renv_engine
+				(renv_engine_key))
+			(renv_key_pair
+				(renv_key)
+				(renv_val)
+			)
+		)
+		(renv_sig_end)
 		(renv_content)
 	)
 	(latex)

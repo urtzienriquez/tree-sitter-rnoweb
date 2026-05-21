@@ -27,7 +27,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_renv_sig_beg"
+          "name": "renv_sig_beg"
         },
         {
           "type": "CHOICE",
@@ -43,7 +43,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_renv_sig_end"
+          "name": "renv_sig_end"
         },
         {
           "type": "CHOICE",
@@ -135,8 +135,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "PATTERN",
-                      "value": "[, ]+"
+                      "type": "STRING",
+                      "value": ","
                     },
                     {
                       "type": "FIELD",
@@ -289,8 +289,8 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "=[ ]*"
+          "type": "STRING",
+          "value": "="
         },
         {
           "type": "FIELD",
@@ -358,11 +358,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "_renv_sig_beg"
+      "name": "renv_sig_beg"
     },
     {
       "type": "SYMBOL",
-      "name": "_renv_sig_end"
+      "name": "renv_sig_end"
     },
     {
       "type": "SYMBOL",
@@ -370,6 +370,5 @@
     }
   ],
   "inline": [],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }

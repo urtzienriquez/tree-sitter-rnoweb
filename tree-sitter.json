@@ -7,7 +7,8 @@
       "title": "Rnoweb",
       "scope": "source.rnoweb",
       "file-types": [
-        "rnoweb"
+        "rnoweb",
+        "Rnw"
       ],
       "injection-regex": "^rnoweb$",
       "class-name": "TreeSitterRnoweb"
@@ -33,9 +34,9 @@
     "c": true,
     "go": false,
     "java": false,
-    "node": false,
+    "node": true,
     "python": false,
-    "rust": false,
+    "rust": true,
     "swift": false,
     "zig": false
   }

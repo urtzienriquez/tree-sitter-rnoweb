@@ -1,10 +1,10 @@
 {
   "name": "tree-sitter-rnoweb",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "tree-sitter parser for rnoweb documents",
   "main": "bindings/node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tree-sitter test"
   },
   "keywords": [
     "rnoweb",
@@ -16,6 +16,6 @@
     "nan": "^2.15.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.6"
+    "tree-sitter-cli": "^0.24.3"
   }
 }

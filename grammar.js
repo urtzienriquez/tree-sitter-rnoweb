@@ -3,11 +3,13 @@ const sepBy1 = (rule, sep) => seq(rule, repeat(seq(sep, rule)));
 module.exports = grammar({
     name: 'rnoweb',
 
+    extras: $ => [/\s/],
+
     externals: $ => [
         $._latex_word,
         $.command_name,
-        $._renv_sig_beg,
-        $._renv_sig_end,
+        $.renv_sig_beg,
+        $.renv_sig_end,
         $.renv_content,
     ],
 
@@ -23,9 +25,9 @@ module.exports = grammar({
 
         rchunk: $ =>
             seq(
-                $._renv_sig_beg,
+                $.renv_sig_beg,
                 optional($.renv_sig_options),
-                $._renv_sig_end,
+                $.renv_sig_end,
                 optional($.renv_content),
                 '@'
             ),
@@ -43,7 +45,7 @@ module.exports = grammar({
                 field("options", $._renv_options),
                 seq(
                     field("label", alias($.renv_key, $.renv_label)),
-                    optional(seq(/[, ]+/, field("options", $._renv_options)))
+                    optional(seq(",", field("options", $._renv_options)))
                 ),
             ),
 
@@ -77,7 +79,7 @@ module.exports = grammar({
         renv_key_pair: $ =>
             seq(
                 field("key", $.renv_key),
-                /=[ ]*/,
+                "=",
                 field("value", $.renv_val)
             ),
 
