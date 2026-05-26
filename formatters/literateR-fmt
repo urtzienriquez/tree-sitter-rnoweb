@@ -115,7 +115,7 @@ def format_file(content, latexindent_cmd, rscript_cmd):
 
     formatted_output = result.stdout
     for key, original_block in placeholders.items():
-        pattern = re.compile(r"^[ \t]*\\" + re.escape(key) + r"\s*$", re.MULTILINE)
+        pattern = re.compile(r"^[ \t]*\\" + re.escape(key) + r"[ \t]*$", re.MULTILINE)
         formatted_output = pattern.sub(lambda m: original_block, formatted_output)
 
     return formatted_output
