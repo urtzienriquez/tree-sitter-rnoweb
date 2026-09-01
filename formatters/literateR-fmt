@@ -22,7 +22,7 @@ def find_tool(name, env_var, install_hint):
 R_SCRIPT = """
 library(styler)
 text <- paste(readLines('stdin', warn=FALSE), collapse='\\n')
-styled <- style_text(text, transformers = tidyverse_style(indent_by = 2L, strict = TRUE))
+styled <- style_text(text, transformers = tidyverse_style(indent_by = 2L, scope = "indention"))
 cat(as.character(styled), sep='\\n')
 """
 
@@ -59,6 +59,21 @@ def find_chunks(lines):
     return ranges
 
 
+def find_rmd_chunks(lines):
+    ranges = []
+    i = 0
+    while i < len(lines):
+        if re.match(r"^```\{", lines[i]):
+            start = i
+            for j in range(i + 1, len(lines)):
+                if re.match(r"^```\s*$", lines[j]):
+                    ranges.append((start, j))
+                    i = j
+                    break
+        i += 1
+    return ranges
+
+
 def format_chunks(lines, ranges, rscript_cmd):
     for idx, (start, end) in enumerate(ranges):
         if end - start <= 1:
@@ -79,13 +94,11 @@ def format_file(content, latexindent_cmd, rscript_cmd):
     ranges = find_chunks(lines)
 
     if not ranges:
-        result = subprocess.run(
-            [latexindent_cmd] + LATEXINDENT_OPTS,
-            input=content,
-            capture_output=True,
-            text=True,
-        )
-        return result.stdout if result.returncode == 0 else content
+        rmd_ranges = find_rmd_chunks(lines)
+        if rmd_ranges:
+            lines = format_chunks(lines, rmd_ranges, rscript_cmd)
+            return "\n".join(lines)
+        return content
 
     lines = format_chunks(lines, ranges, rscript_cmd)
 
