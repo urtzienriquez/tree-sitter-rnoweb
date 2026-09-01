@@ -25,11 +25,9 @@
     "url": "https://github.com/urtzienriquez/tree-sitter-rnoweb/issues"
   },
   "homepage": "https://github.com/urtzienriquez/tree-sitter-rnoweb",
-  "dependencies": {
-    "nan": "^2.27.0"
-  },
   "devDependencies": {
-    "tree-sitter-cli": "^0.26.9"
+    "tree-sitter-cli": "^0.26.9",
+    "nan": "^2.27.0"
   },
   "files": [
     "grammar.js",
