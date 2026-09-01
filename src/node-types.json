@@ -2,7 +2,17 @@
   {
     "type": "latex",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "latex_comment",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "rchunk",
@@ -197,6 +207,10 @@
   {
     "type": "engine",
     "named": false
+  },
+  {
+    "type": "latex_comment",
+    "named": true
   },
   {
     "type": "renv_content",

@@ -8,3 +8,5 @@
 (renv_engine_key) @type
 
 (rinline (command_name) @module)
+
+(latex_comment) @comment

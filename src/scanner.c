@@ -8,20 +8,24 @@ enum TokenType {
 	RENV_SIG_BEG,
 	RENV_SIG_END,
 	RENV_CONTENT,
+	LATEX_COMMENT,
 };
 
-bool ws(int32_t val)
+static bool ws(int32_t val)
 {
 	return(val == ' ' || val == '\t' || val == '\n' || val == '\r');
 }
 
-void advance_ws(TSLexer* lexer)
+static bool prev_was_ws = false;
+
+static void advance_ws(TSLexer* lexer)
 {
-	// If the current character is whitesapce, skip it
-	while (ws(lexer->lookahead))  lexer->advance(lexer, true);
+	bool consumed = false;
+	while (ws(lexer->lookahead))  { lexer->advance(lexer, true); consumed = true; }
+	prev_was_ws = consumed;
 };
 
-bool rnw_content(TSLexer* lexer)
+static bool rnw_content(TSLexer* lexer)
 {
 	// The current character
 	bool eof = lexer->eof(lexer);
@@ -43,7 +47,7 @@ bool rnw_content(TSLexer* lexer)
 	return(true);
 };
 
-bool rnw_sig_end(TSLexer* lexer)
+static bool rnw_sig_end(TSLexer* lexer)
 {
 	if (lexer->eof(lexer)) return(false);
 
@@ -78,7 +82,7 @@ bool rnw_sig_end(TSLexer* lexer)
 	return(res);
 }
 
-bool word_or_sig(TSLexer* lexer)
+static bool word_or_sig(TSLexer* lexer)
 {
 	// End of file, return false
 	bool eof = lexer->eof(lexer);
@@ -115,6 +119,18 @@ bool word_or_sig(TSLexer* lexer)
 
 	// If we're in a command, we need to know if it's a Sexpr, otherwise keep it
 	// going till whitespace or another command start ('\\')
+
+	if (lexer->lookahead == '%' && (col == 0 || prev_was_ws))
+	{
+		while ((val != '\n') && ! lexer->eof(lexer))
+		{
+			lexer->advance(lexer, false);
+			val = lexer->lookahead;
+		}
+		lexer->mark_end(lexer);
+		lexer->result_symbol = LATEX_COMMENT;
+		return(true);
+	}
 
 	// If we advanced once already, thenn fval is "<", twice, we wouldn't be here.
 	// So if we're not at a '\\' or whitespace, keep marking the line until we hit whitespace.
@@ -162,6 +178,7 @@ bool word_or_sig(TSLexer* lexer)
 		lexer->result_symbol = _LATEX_WORD;
 		return(true);
 	}
+
 	return(false);
 
 }
@@ -196,7 +213,7 @@ bool tree_sitter_rnoweb_external_scanner_scan(
 
 	bool res = false;
 
-	if (valid_symbols[_LATEX_WORD] || valid_symbols[RENV_INLINE] || valid_symbols[RENV_SIG_BEG])
+	if (valid_symbols[_LATEX_WORD] || valid_symbols[RENV_INLINE] || valid_symbols[RENV_SIG_BEG] || valid_symbols[LATEX_COMMENT])
 	{
 		res = word_or_sig(lexer);
 	} else if (valid_symbols[RENV_SIG_END]) {
