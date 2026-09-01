@@ -409,21 +409,15 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') SKIP(1);
       if (lookahead != 0 &&
           lookahead != ',' &&
-          lookahead != '>' &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(41);
+          lookahead != '>') ADVANCE(41);
       END_STATE();
     case 2:
       if (lookahead == '"') ADVANCE(35);
-      if (lookahead != 0 &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(2);
+      if (lookahead != 0) ADVANCE(2);
       END_STATE();
     case 3:
       if (lookahead == '\'') ADVANCE(37);
-      if (lookahead != 0 &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(3);
+      if (lookahead != 0) ADVANCE(3);
       END_STATE();
     case 4:
       if (lookahead == 'e') ADVANCE(31);
@@ -437,9 +431,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '}') ADVANCE(12);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(10);
-      if (lookahead != 0 &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(11);
+      if (lookahead != 0) ADVANCE(11);
       END_STATE();
     case 6:
       if (('\t' <= lookahead && lookahead <= '\r') ||
@@ -461,16 +453,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(10);
       if (lookahead != 0 &&
-          lookahead != '}' &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(11);
+          lookahead != '}') ADVANCE(11);
       END_STATE();
     case 11:
       ACCEPT_TOKEN(aux_sym_rinline_token1);
       if (lookahead != 0 &&
-          lookahead != '}' &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(11);
+          lookahead != '}') ADVANCE(11);
       END_STATE();
     case 12:
       ACCEPT_TOKEN(anon_sym_RBRACE);
@@ -662,9 +650,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           (lookahead < '\t' || '\r' < lookahead) &&
           lookahead != ' ' &&
           lookahead != ',' &&
-          lookahead != '>' &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(41);
+          lookahead != '>') ADVANCE(41);
       END_STATE();
     case 37:
       ACCEPT_TOKEN(aux_sym_renv_val_token2);
@@ -675,9 +661,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           (lookahead < '\t' || '\r' < lookahead) &&
           lookahead != ' ' &&
           lookahead != ',' &&
-          lookahead != '>' &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(41);
+          lookahead != '>') ADVANCE(41);
       END_STATE();
     case 39:
       ACCEPT_TOKEN(aux_sym_renv_val_token3);
@@ -686,9 +670,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ' ||
           lookahead == ',' ||
           lookahead == '>') ADVANCE(2);
-      if (lookahead != 0 &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(39);
+      if (lookahead != 0) ADVANCE(39);
       END_STATE();
     case 40:
       ACCEPT_TOKEN(aux_sym_renv_val_token3);
@@ -697,9 +679,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ' ||
           lookahead == ',' ||
           lookahead == '>') ADVANCE(3);
-      if (lookahead != 0 &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(40);
+      if (lookahead != 0) ADVANCE(40);
       END_STATE();
     case 41:
       ACCEPT_TOKEN(aux_sym_renv_val_token3);
@@ -707,9 +687,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           (lookahead < '\t' || '\r' < lookahead) &&
           lookahead != ' ' &&
           lookahead != ',' &&
-          lookahead != '>' &&
-          lookahead != 0x17f &&
-          lookahead != 0x212a) ADVANCE(41);
+          lookahead != '>') ADVANCE(41);
       END_STATE();
     default:
       return false;
